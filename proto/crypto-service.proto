@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "crypto-bankid.proto";
+import "crypto-common.proto";
+import "crypto-doc.proto";
+
+package ua.gov.diia.crypto;
+
+service CryptoDocService {
+
+  rpc docContentEnvelope (EnvelopFileRequest) returns (EnvelopFileResponse) {}
+
+  rpc docContentDevelop (DevelopFileRequest) returns (DevelopFileResponse) {}
+
+  rpc docContentVerifyAndDevelop (VerifyAndDevelopContentRequest) returns (DevelopedDataResponse) {}
+  
+  rpc docContentSignAndEnvelop (SignAndEnvelopContentRequest) returns (EnvelopedDataResponse) {}
+  
+  rpc docComposeGroupSignExternal (ComposeGroupSignRequest) returns (ComposeGroupSignResponse) {}
+  
+  rpc docVerifySignExternal (VerifySignExternalRequest) returns (VerifyInfoResponse) {}
+  
+  rpc docVerifySignInternal (VerifySignInternalRequest) returns (VerifyInfoResponseInternal) {}
+  
+  rpc docGenerateSignature (GenSignRequest) returns (GenSignResponse) {}
+  
+  rpc docSignHash (SignHashRequest) returns (SignHashResponse) {}
+  
+  rpc docVerifyHash (VerifyHashRequest) returns (VerifyInfoResponse) {}
+  
+  rpc docGenerateHash (GenHashRequest) returns (GenHashResponse) {}
+}
+
+service BankIdCryptoService {
+
+  rpc generateCertificate (GenerateCertificateRequest) returns (GenerateCertificateResponse) {}
+
+  rpc decrypt (DevelopUserDataRequest) returns (DevelopUserDataResponse) {}
+}
+
+service CryptoService {
+
+  rpc signAndEncrypt (SignAndEncryptFileRequest) returns (SignAndEncryptFileResponse) {}
+
+  rpc encryptData (EncryptDataRequest) returns (EncryptDataResponse) {}
+
+  rpc signFile (SignFileRequest) returns (SignFileResponse) {}
+
+  rpc signArchiveFiles (SignEnvelopeArchiveContentRequest) returns (SignEnvelopeArchiveResponse) {}
+
+  rpc parseCertificate (ParseCertificateRequest) returns (ParseCertificateResponse) {}
+}

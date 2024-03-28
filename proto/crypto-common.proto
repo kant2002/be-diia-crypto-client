@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message SignAndEncryptFileRequest {
+    string file = 1;
+    string fileName = 2;
+    string certificate = 3;
+}
+
+message SignAndEncryptFileResponse {
+    string fileContent = 1;
+    string fileName = 2;    
+}
+
+message EncryptDataRequest {
+    string data = 1;
+    string certificate = 2;    
+}
+
+message EncryptDataResponse {
+    string encryptedData = 1;
+}
+
+message SignFileRequest {
+    string file = 1;
+    string fileName = 2;    
+    string certificate = 3;    
+    bool external = 4;    
+    bool appendCert = 5;    
+}
+
+message SignFileResponse {
+    string fileContent = 1;
+    string fileName = 2;    
+}
+
+message SignEnvelopeArchiveContentRequest {
+    string uuid = 1;
+    repeated ArchFile files = 2;    
+}
+
+message ArchFile {
+    string name = 1;
+    string file = 2;    
+    string signature = 3;    
+}
+
+message SignEnvelopeArchiveResponse {
+    optional Archive archive = 1;
+}
+
+message Archive {
+    string file = 1;
+    string name = 2;
+}
+
+message ParseCertificateRequest {
+    string encodedCertificate = 1;
+}
+
+message ParseCertificateResponse {
+    string issuer = 1;
+    string issuerCN = 2;
+    string serial = 3;
+    string subject = 4;
+    string subjCN = 5;
+    string subjOrg = 6;
+    string subjOrgUnit = 7;
+    string subjTitle = 8;
+    string subjState = 9;
+    string subjLocality = 10;
+    string subjFullName = 12;
+    string subjAddress = 13;
+    string subjPhone = 14;
+    string subjEMail = 15;
+    string subjDNS = 16;
+    string subjEDRPOUCode = 17;
+    string subjDRFOCode = 18;
+    string subjNBUCode = 19;
+    string subjSPFMCode = 20;
+    string subjOCode = 21;
+    string subjOUCode = 22;
+    string subjUserCode = 23;
+    optional google.protobuf.Timestamp certBeginTime = 24;
+    optional google.protobuf.Timestamp certEndTime = 25;
+}

@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+enum SignType {
+    UNKNOWN = 0;
+    CADES_BES = 1;
+    CADES_T = 4;
+    CADES_C = 8;
+    CADES_X_LONG = 16;
+    CADES_X_LONG_TRUSTED = 128;
+}
+
+message VerifyHashRequest {
+    string hash = 1;
+    string signature = 2;
+}
+
+message GenHashRequest {
+    string content = 1;
+}
+
+message GenHashResponse {
+    string hash = 1;
+}
+
+message SignHashResponse {
+    string signature = 1;
+}
+
+message SignHashRequest {
+    string hash = 1;
+    optional bool appendCert = 2;
+}
+
+message GenSignResponse {
+    string signature = 1;
+}
+
+message GenSignRequest {
+    string contentBase64 = 1;
+    optional bool external = 2;
+    optional int32 signAlgorithm = 4;
+}
+
+message VerifySignInternalRequest {
+    string signedData = 1;
+}
+
+message VerifyInfoResponseInternal {
+    optional SignOwnerInfo ownerInfo = 1;
+    optional SignTimeInfo timeInfo = 2;
+    string data = 3;
+    string base64String = 4;
+}
+
+message SignOwnerInfo {
+    string issuer = 1;
+    string issuerCn = 2;
+    string serial = 3;
+    string subject = 4;
+    string subjCn = 5;
+    string subjOrg = 6;
+    string subjOrgUnit = 7;
+    string subjTitle = 8;
+    string subjState = 9;
+    string subjLocality = 10;
+    string subjFullName = 11;
+    string subjAddress = 12;
+    string subjPhone = 13;
+    string subjEmail = 14;
+    string subjDns = 15;
+    string subjEdrpouCode = 16;
+    string subjDrfoCode = 17;
+}
+
+message SignTimeInfo {
+    bool isTimeAvail = 1;
+    bool isTimeStamp = 2;
+    optional google.protobuf.Timestamp time = 3;
+    repeated int32 timeArray = 4;
+}
+
+message VerifyInfoResponse {
+    optional SignOwnerInfo ownerInfo = 1;
+    optional SignTimeInfo timeInfo = 2;
+    string data = 3;
+}
+
+message VerifySignExternalRequest {
+    string data = 1;
+    string signature = 2;
+}
+
+message ComposeGroupSignResponse {
+    string signedFile = 1;
+    string signature = 2;
+}
+
+message ComposeGroupSignRequest {
+    string uuid = 1;
+    repeated string signatures = 2;
+    string contentBase64 = 3;
+    optional bool returnSignedFile = 4;
+}
+
+message EnvelopedDataResponse {
+    string envelopedData = 1;
+}
+
+message SignAndEnvelopContentRequest {
+    string contentBase64 = 1;
+    string recipientCertBash64 = 2;
+}
+
+message VerifyAndDevelopContentRequest {
+    string envelopedDataBase64 = 1;
+    optional string senderCertBash64 = 2;
+}
+
+message DevelopedDataResponse {
+    optional SignOwnerInfo ownerInfo = 1;
+    optional SignTimeInfo timeInfo = 2;
+    string data = 3;
+}
+
+message DevelopFileRequest {
+    string file = 1;
+    string receiverCert = 2;
+}
+
+message DevelopFileResponse {
+    string data = 1;
+}
+
+message EnvelopFileRequest {
+    string file = 1;
+    bool isAppendCert = 2;
+    repeated string receiverCerts = 3;
+}
+
+message EnvelopFileResponse {
+    string data = 1;
+}

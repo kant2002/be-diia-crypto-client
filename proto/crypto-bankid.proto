@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+message GenerateCertificateRequest {
+    optional string jwt = 1;
+}
+
+message GenerateCertificateResponse {
+    string cert = 1;
+}
+
+message DevelopUserDataRequest {
+    string customerCrypto = 1;
+    string cert = 2;
+    optional string state = 3;
+    optional string sidBi = 4;
+    optional string memberId = 5;
+    optional string timestamp = 6;
+}
+
+message DevelopUserDataResponse {
+    string data = 1;
+}
