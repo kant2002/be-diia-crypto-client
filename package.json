@@ -1,0 +1,28 @@
+{
+  "name": "@kant2002-diia-inhouse/diia-crypto-client",
+  "version": "1.0.0-94617",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "mongodb": "^6.2.0",
+    "nice-grpc-common": "^2.0.2",
+    "protobufjs": "^7.2.5",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@kant2002-diia-inhouse/configs": "^1.22.0",
+    "@kant2002-diia-inhouse/types": "^3.51.1-94601"
+  }
+}
